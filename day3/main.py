@@ -28,8 +28,8 @@ def createWireMap(instructions):
     def runInstruction(dist, dir, length):
         for j in range(1, length+1):
             pos = (x + dir[0]*j, y + dir[1]*j)
-            dist = wire.get(pos, dist + 1)
-            wire[pos] = dist
+            dist += 1
+            wire[pos] = wire.get(pos, dist)
         return dist
 
     wire = dict()
@@ -74,4 +74,3 @@ with open("day3/in.txt", "r") as f:
     for i in intersectionPart2:
         mindist = min(wireMap1[i] + wireMap2[i], mindist)
     print(f"Part 2: {mindist}")
-    # Note: The answer for part 2 is incorrect, although it works on all the examples.
